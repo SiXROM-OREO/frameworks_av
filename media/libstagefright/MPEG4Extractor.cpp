@@ -4618,6 +4618,8 @@ status_t MPEG4Source::read(
         }
         if (size > mBuffer->size()) {
             ALOGE("buffer too small: %zu > %zu", size, mBuffer->size());
+            mBuffer->release();
+            mBuffer = NULL;
             return ERROR_BUFFER_TOO_SMALL;
         }
     }
@@ -4910,6 +4912,8 @@ status_t MPEG4Source::fragmentedRead(
         }
         if (size > mBuffer->size()) {
             ALOGE("buffer too small: %zu > %zu", size, mBuffer->size());
+            mBuffer->release();
+            mBuffer = NULL;
             return ERROR_BUFFER_TOO_SMALL;
         }
     }
